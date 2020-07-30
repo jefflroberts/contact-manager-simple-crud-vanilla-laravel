@@ -21,5 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('contact', 'ContactController')->middleware('auth');
-Route::resource('user', 'UserController')->middleware('auth');
+Route::resource('user', 'UserController')->middleware('admin');
 
