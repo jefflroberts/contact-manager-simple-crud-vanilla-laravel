@@ -27,6 +27,18 @@
                 <td>Phone</td>
                 <td>Actions</td>
             </tr>
+            <tr>
+                <form action="/contact" method="get">
+                <td><input class="form-control" type="text" name="first_name" value="{{ $params['first_name'] ?? '' }}"></td>
+                <td><input class="form-control" type="text" name="last_name" value="{{ $params['last_name'] ?? '' }}"></td>
+                <td><input class="form-control" type="text" name="email" value="{{ $params['email'] ?? '' }}"></td>
+                <td><input class="form-control" type="text" name="phone" value="{{ $params['phone'] ?? '' }}"></td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-secondary">Apply Filter</button>
+                    <a href="/contact" class="btn btn-sm btn-secondary">Clear Filter</a>
+                </td>
+                </form>
+            </tr>
         </thead>
         <tbody>
         @foreach($contacts as $key => $value)

@@ -15,9 +15,29 @@ class ContactController extends Controller
      */
     public function index(Request $request)
     {
-        $contacts = Contact::where('user_id', '=', Auth::user()->id)->paginate(10);
+        $params = $request->query();
+        $query = Contact::query();
+        if (!empty($params['first_name'])) {
+            $query->where('first_name', 'like', "%" . $params['first_name'] . "%");
+        }
 
-        return view('contact.index', compact('contacts'));
+        if (!empty($params['last_name'])) {
+            $query->where('last_name', 'like', "%" . $params['last_name'] . "%");
+        }
+
+        if (!empty($params['email'])) {
+            $query->where('email', 'like', "%" . $params['email'] . "%");
+        }
+
+        if (!empty($params['phone'])) {
+            $query->where('phone', 'like', "%" . $params['phone'] . "%");
+        }
+
+        $query->where('user_id', '=', Auth::user()->id);
+        $contacts = $query->paginate(10);
+
+        // add the search fields back to what is
+        return view('contact.index', ['contacts' => $contacts, 'params' => $params]);
     }
 
     /**
