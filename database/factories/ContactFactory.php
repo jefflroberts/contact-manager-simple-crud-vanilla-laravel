@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $users = User::all()->pluck('id')->toArray();
 
-$factory->define(Contact::class, function (Faker $faker) {
+$factory->define(Contact::class, function (Faker $faker) use ($users) {
     return [
         'user_id' => $faker->randomElement($users),
         'first_name' => $faker->firstName,
