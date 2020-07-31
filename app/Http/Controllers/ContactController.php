@@ -36,7 +36,6 @@ class ContactController extends Controller
         $query->where('user_id', '=', Auth::user()->id);
         $contacts = $query->paginate(10);
 
-        // add the search fields back to what is
         return view('contact.index', ['contacts' => $contacts, 'params' => $params]);
     }
 
