@@ -17,40 +17,42 @@
     @endif
 </div>
 
-<div class="col-sm-12">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Contacts</li>
-        </ol>
-    </nav>
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Email</td>
-            <td>Phone</td>
-            <td>Actions</td>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($contacts as $key => $value)
-        <tr>
-            <td>{{ $value->first_name }}</td>
-            <td>{{ $value->last_name }}</td>
-            <td>{{ $value->email }}</td>
-            <td>{{ $value->phone }}</td>
-            <td>
-                <a class="btn btn-small btn-success" href="{{ URL::to('contact/' . $value->id) }}">Show</a>
-                <a class="btn btn-small btn-info" href="{{ URL::to('contact/' . $value->id . '/edit') }}">Edit</a>
-                <x-delete-button :action="route('contact.destroy', $value)" class="btn btn-danger" method="delete">
-                    Delete
-                 </x-delete-button>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-<a class="btn btn-primary" href="/contact/create">Add New Contact</a>
+<div class="col-12">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($contacts as $key => $value)
+            <tr>
+                <td>{{ $value->first_name }}</td>
+                <td>{{ $value->last_name }}</td>
+                <td>{{ $value->email }}</td>
+                <td>{{ $value->phone }}</td>
+                <td>
+                    <a class="btn btn-small btn-success" href="{{ URL::to('contact/' . $value->id) }}">Show</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('contact/' . $value->id . '/edit') }}">Edit</a>
+                    <x-delete-button :action="route('contact.destroy', $value)" class="btn btn-danger" method="delete">
+                        Delete
+                    </x-delete-button>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <div class="row justify-content-md-center">
+    <div class="col-md-6 offset-md-4">
+        {{ $contacts->links() }}
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary" href="/contact/create">Add New Contact</a>
+    </div>
+    </div>
 </div>
 @endsection
