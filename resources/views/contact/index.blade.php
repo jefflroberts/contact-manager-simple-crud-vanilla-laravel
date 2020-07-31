@@ -36,9 +36,9 @@
                 <td>{{ $value->email }}</td>
                 <td>{{ $value->phone }}</td>
                 <td>
-                    <a class="btn btn-small btn-success" href="{{ URL::to('contact/' . $value->id) }}">Show</a>
-                    <a class="btn btn-small btn-info" href="{{ URL::to('contact/' . $value->id . '/edit') }}">Edit</a>
-                    <x-delete-button :action="route('contact.destroy', $value)" class="btn btn-danger" method="delete">
+                    <a class="btn btn-sm btn-success" href="{{ URL::to('contact/' . $value->id) }}">Show</a>
+                    <a class="btn btn-sm btn-info" href="{{ URL::to('contact/' . $value->id . '/edit') }}">Edit</a>
+                    <x-delete-button :action="route('contact.destroy', $value)" class="btn btn-sm btn-danger" method="delete">
                         Delete
                     </x-delete-button>
                 </td>
@@ -47,12 +47,16 @@
         </tbody>
     </table>
     <div class="row justify-content-md-center">
-    <div class="col-md-6 offset-md-4">
-        {{ $contacts->links() }}
-    </div>
-    <div class="col-md-2">
-        <a class="btn btn-primary" href="/contact/create">Add New Contact</a>
-    </div>
+        <div class="col-md-4">
+            {{ $contacts->total() }} Total Records |
+            {{ $contacts->count() }} Records On This Page
+        </div>
+        <div class="col-md-6">
+            {{ $contacts->links() }}
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-sm btn-primary" href="/contact/create">Add New Contact</a>
+        </div>
     </div>
 </div>
 @endsection
